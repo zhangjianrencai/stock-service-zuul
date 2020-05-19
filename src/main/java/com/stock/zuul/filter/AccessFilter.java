@@ -75,7 +75,7 @@ public class AccessFilter extends ZuulFilter{
 		String url = request.getRequestURL().toString();
 		// 如果是登录链接，则发起请求
 		// URL: http://localhost:8901/auth/oauth/token?grant_type=password&scope=webclient&username=admin&password=admin
-		if("/auth/oauth/token".equals(url)){
+		if("/authenticate".equals(url)){
 			return null;
 		}
 		
@@ -89,8 +89,8 @@ public class AccessFilter extends ZuulFilter{
 		} else {
 			try {
 				// 使用Token去调用：http://localhost:8901/auth/user，如果能返回User信息，则证明token有效
-				User user = restTempate.getForObject("http://localhost:8901/auth/user", User.class);
-				// User user = restTempate.getForObject("http://cloud-auth-service/auth/user", User.class);
+				//User user =("http://localhost:8901/auth/user", User.class);
+				User user = restTempate.getForObject("http://stock-service-auth/auth/user", User.class);
 				if (user == null) {
 					logger.info("The user is null...");
 					requestContext.setSendZuulResponse(false);
