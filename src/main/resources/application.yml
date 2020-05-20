@@ -31,6 +31,8 @@ hystrix:
                thread:
                   timeout-in-milliseconds: 30000
 eureka:
+   instance:
+      preferIpAddress: true
    client: 
       registerWithEureka: true
       fetchRegistry: true

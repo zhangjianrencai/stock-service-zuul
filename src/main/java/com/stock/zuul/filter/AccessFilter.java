@@ -38,13 +38,13 @@ public class AccessFilter extends ZuulFilter{
 
         System.out.println(request.getRequestURI());
         //不需要权限校验URL
-//        if ("/auth/oauth/token".equalsIgnoreCase(request.getRequestURI())) {
-//            return false;
-//        } else if ("/apigateway/order/api/v1/order/list".equalsIgnoreCase(request.getRequestURI())) {
-//            return false;
-//        } else if ("/apigateway/order/api/v1/order/find".equalsIgnoreCase(request.getRequestURI())) {
-//            return false;
-//        }
+        if ("/api/stock-service-auth/authenticate".equalsIgnoreCase(request.getRequestURI())) {
+            return false;
+        } else if ("/api/stock-service-auth/regist".equalsIgnoreCase(request.getRequestURI())) {
+            return false;
+        } else if ("/apigateway/order/api/v1/order/find".equalsIgnoreCase(request.getRequestURI())) {
+            return false;
+        }
         
         return true;
 	}
@@ -90,7 +90,7 @@ public class AccessFilter extends ZuulFilter{
 			try {
 				// 使用Token去调用：http://localhost:8901/auth/user，如果能返回User信息，则证明token有效
 				//User user =("http://localhost:8901/auth/user", User.class);
-				User user = restTempate.getForObject("http://stock-service-auth/auth/user", User.class);
+				User user = restTempate.getForObject("http://stock-service-auth/currentuser", User.class);
 				if (user == null) {
 					logger.info("The user is null...");
 					requestContext.setSendZuulResponse(false);
