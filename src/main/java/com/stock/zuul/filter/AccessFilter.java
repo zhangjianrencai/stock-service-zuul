@@ -42,7 +42,7 @@ public class AccessFilter extends ZuulFilter{
             return false;
         } else if ("/api/stock-service-auth/regist".equalsIgnoreCase(request.getRequestURI())) {
             return false;
-        } else if ("/apigateway/order/api/v1/order/find".equalsIgnoreCase(request.getRequestURI())) {
+        } else if ("/api/stock-service-business/upload".equalsIgnoreCase(request.getRequestURI())) {
             return false;
         }
         
@@ -99,9 +99,9 @@ public class AccessFilter extends ZuulFilter{
 				}else{
 					logger.info("Login user: " + user);
 				}
-				// TODO 利用返回的权限信息，进行权限校验
+				// TODO 利192用返回的权限信息，进行权限校验
 
-				// TODO 如果没有权限，则不请求转发
+				// TODO 如果没有权限，则不请求转发 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
