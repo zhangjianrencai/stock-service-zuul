@@ -42,7 +42,7 @@ public class AccessFilter extends ZuulFilter{
             return false;
         } else if ("/api/stock-service-auth/regist".equalsIgnoreCase(request.getRequestURI())) {
             return false;
-        } else if ("/api/stock-service-business/upload".equalsIgnoreCase(request.getRequestURI())) {
+        } else if ("/api/stock-service-upload/upload".equalsIgnoreCase(request.getRequestURI())) {
             return false;
         }
         
